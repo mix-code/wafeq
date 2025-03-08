@@ -14,6 +14,11 @@ A Laravel package for interacting with the Daftra API, supporting **clients, pro
 -   **Simple API wrapper** with Laravel's HTTP Client
 -   Supports **facade usage** for convenience
 
+## ‼️ Requirments
+
+-   PHP 8.2
+-   Laravel 10 or Above
+
 ## 📦 Installation
 
 ```bash
