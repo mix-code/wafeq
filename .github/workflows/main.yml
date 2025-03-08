@@ -28,7 +28,7 @@ jobs:
           coverage: none
 
       - name: Install dependencies
-        run: composer install --${{ matrix.dependency-stability }} --no-interaction --prefer-dist
+        run: composer install --no-interaction --prefer-dist
 
       - name: Run Pint (code style check)
         run: vendor/bin/pint --test
