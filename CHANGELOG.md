@@ -1,7 +1,7 @@
 # Changelog
 
-All notable changes to `daftra-client` will be documented in this file
+All notable changes to `wafeq` will be documented in this file
 
-## 1.0.0 - 2025-03-08
+## 1.0.0 - 2025-04-21
 
 - initial release

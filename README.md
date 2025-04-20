@@ -1,16 +1,16 @@
-# Daftra Client for Laravel
+# Wafeq Integration for Laravel
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/mix-code/daftra-client.svg?style=flat-square)](https://packagist.org/packages/mix-code/daftra-client)
-[![Total Downloads](https://img.shields.io/packagist/dt/mix-code/daftra-client.svg?style=flat-square)](https://packagist.org/packages/mix-code/daftra-client)
-![GitHub Actions](https://github.com/mix-code/daftra-client/actions/workflows/main.yml/badge.svg)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/mix-code/wafeq.svg?style=flat-square)](https://packagist.org/packages/mix-code/wafeq)
+[![Total Downloads](https://img.shields.io/packagist/dt/mix-code/wafeq.svg?style=flat-square)](https://packagist.org/packages/mix-code/wafeq)
+![GitHub Actions](https://github.com/mix-code/wafeq/actions/workflows/main.yml/badge.svg)
 
-A Laravel package for interacting with the Daftra API, supporting **clients, products, invoice creation, and invoice payments**.
+A Laravel package for interacting with the Wafeq API, supporting **projects, contacts, accounts**.
 
 ## 🚀 Features
 
--   Manage **clients** (list, show, create, update, delete)
--   Manage **products** (list, show, create, update, delete)
--   **Create invoices** and **make invoice payments**
+-   Manage **projects** (list, show, create, update, delete)
+-   Manage **contacts** (list, show, create, update, delete)
+-   Manage **accounts** (list)
 -   **Simple API wrapper** with Laravel's HTTP Client
 -   Supports **facade usage** for convenience
 
@@ -22,7 +22,7 @@ A Laravel package for interacting with the Daftra API, supporting **clients, pro
 ## 📦 Installation
 
 ```bash
-composer require mix-code/daftra-client
+composer require mix-code/wafeq
 ```
 
 ## ⚙️ Configuration
@@ -30,211 +30,178 @@ composer require mix-code/daftra-client
 Publish the configuration file:
 
 ```bash
-php artisan vendor:publish --tag=daftra-client
+php artisan vendor:publish --tag=wafeq
 ```
 
 Then update your `.env` file:
 
 ```env
-DAFTRA_API_KEY=your_api_key_here
-DAFTRA_ENDPOINT=https://api.daftra.com/v2
+WAFEQ_API_KEY=your_api_key_here
+WAFEQ_ENDPOINT=https://api.wafeq.com/v1
 ```
 
 ## 🛠️ Usage
 
-### 1️⃣ Daftra Client Directly
+### 1️⃣ Project Directly
 
-You can inject `DaftraClient` directly anywhere:
+You can inject `Project` directly anywhere:
 
 ```php
-use MixCode\DaftraClient\DaftraClient;
+use MixCode\Wafeq\Project;
 
-class ClientController
+class ProjectController
 {
 
-    public function listClients()
+    public function listProjects()
     {
-        $daftraClient = new DaftraClient();
+        $projectService = new Project();
 
-        return $daftraClient->listClients();
+        return $projectService->list();
     }
 }
 ```
 
 ### 2️⃣ Using the Facade
 
-You can also use the `DaftraClient` facade:
+You can also use the `Project` facade:
 
 ```php
-use MixCode\DaftraClient\DaftraClientFacade as Daftra;
+use MixCode\Wafeq\ProjectFacade as Project;
 
-$clients = Daftra::listClients();
+$projects = Project::list();
 ```
 
 ### 3️⃣ Using Dependency Injection
 
-You can inject `DaftraClient` directly into your controllers or services:
+You can inject `Project` directly into your controllers or services:
 
 ```php
-use MixCode\DaftraClient\DaftraClient;
+use MixCode\Wafeq\Project;
 
-class ClientController
+class ProjectController
 {
-    public function __construct(private DaftraClient $daftraClient) {}
+    public function __construct(private Project $project) {}
 
-    public function listClients()
+    public function listProjects()
     {
-        return $this->daftraClient->listClients();
+        return $this->project->list();
     }
 }
 ```
 
 ## 📚 API Methods
 
-### 🔹 Clients
+### 🔹 Projects Use `Project.php` class, in namespace `MixCode\Wafeq\Project`
 
-#### List Clients
+#### List Projects
 
 ```php
-$clients = $daftraClient->listClients();
+$project = new Project();
+$projects = $project->list();
 ```
 
-#### Show Client
+#### Show Project
 
 ```php
-$client = $daftraClient->showClient($clientId);
+$project = new Project();
+$project = $project->show($projectId);
 ```
 
-#### Create Client
+#### Create Project
 
 ```php
-use MixCode\DaftraClient\Payloads\ClientPayload;
+use MixCode\Wafeq\Payloads\ProjectPayload;
 
-$payload = new ClientPayload(
+$payload = new ProjectPayload(
+    name: 'Project Name',
+);
+
+$project = new Project();
+
+$response = $project->create($payload);
+```
+
+#### update Project
+
+```php
+use MixCode\Wafeq\Payloads\ProjectPayload;
+
+$payload = new ProjectPayload(
     name: 'John Doe',
-    email: 'john@example.com'
 );
 
-$response = $daftraClient->createClient($payload);
+$project = new Project();
+
+$response = $project->update($payload);
 ```
 
-#### update Client
+#### Delete Project
 
 ```php
-use MixCode\DaftraClient\Payloads\ClientPayload;
+$project = new Project();
 
-$payload = new ClientPayload(
-    name: 'John Doe',
-    email: 'john@example.com'
+$response = $project->delete($projectId);
+```
+### 🔹 Contacts Use `Contact.php` class, in namespace `MixCode\Wafeq\Contact`
+
+#### List Contacts
+
+```php
+$contact = new Contact();
+$contacts = $contact->list();
+```
+
+#### Show Contact
+
+```php
+$contact = new Contact();
+$contact = $contact->show($contactId);
+```
+
+#### Create Contact
+
+```php
+use MixCode\Wafeq\Payloads\ContactPayload;
+
+$payload = new ContactPayload(
+    name: 'Contact Name',
+    email: 'contact@example.com',
+    phone: '+1234567890'
 );
 
-$response = $daftraClient->updateClient($payload);
+$contact = new Contact();
+$response = $contact->create($payload);
 ```
 
-#### Delete Client
+#### Update Contact
 
 ```php
-$response = $daftraClient->deleteClient($clientId);
-```
+use MixCode\Wafeq\Payloads\ContactPayload;
 
-### 🔹 Products
-
-#### List Products
-
-```php
-$products = $daftraClient->listProducts();
-```
-
-#### Show Product
-
-```php
-$product = $daftraClient->showProduct($productId);
-```
-
-#### Create Product
-
-```php
-use MixCode\DaftraClient\Payloads\ProductPayload;
-
-$payload = new ProductPayload(
-    name: 'Sample Product',
-    price: 100.00
+$payload = new ContactPayload(
+    name: 'Contact Name Updated',
+    email: 'contact@example.com',
+    phone: '+1234567890'
 );
 
-$response = $daftraClient->createProduct($payload);
+$contact = new Contact();
+$response = $contact->update($payload);
 ```
 
-#### Update Product
+#### Delete Contact
 
 ```php
-use MixCode\DaftraClient\Payloads\ProductPayload;
-
-$payload = new ProductPayload(
-    name: 'Sample Product',
-    price: 100.00
-);
-
-$response = $daftraClient->updateProduct($payload);
+$contact = new Contact();
+$contact = $contact->delete($contactId);
 ```
 
-#### Delete Product
+### 🔹 Accounts Use `Account.php` class, in namespace `MixCode\Wafeq\Account`
+
+#### List Accounts
 
 ```php
-$product = $daftraClient->deleteProduct($productId);
-```
-
-### 🔹 Invoices
-
-#### Create an Invoice
-
-```php
-use MixCode\DaftraClient\Payloads\InvoicePayload;
-use MixCode\DaftraClient\Payloads\InvoiceItemPayload;
-
-$items = [
-    new InvoiceItemPayload(productId: 1, quantity: 2, price: 50.00)
-];
-
-$invoicePayload = new InvoicePayload(
-    clientId: 123,
-    date: now()->toDateString(),
-    items: $items
-);
-
-$invoice = $daftraClient->createInvoice($invoicePayload);
-```
-
-#### Pay an Invoice
-
-```php
-use MixCode\DaftraClient\Payloads\InvoicePaymentPayload;
-
-$paymentPayload = new InvoicePaymentPayload(
-    invoiceId: $invoice->id,
-    amount: 100.00,
-    paymentMethod: 'credit_card'
-);
-
-$payment = $daftraClient->payInvoice($paymentPayload);
-```
-
-#### Create and Pay an Invoice
-
-```php
-use MixCode\DaftraClient\Payloads\InvoicePayload;
-use MixCode\DaftraClient\Payloads\InvoiceItemPayload;
-
-$items = [
-    new InvoiceItemPayload(productId: 1, quantity: 2, price: 50.00)
-];
-
-$invoicePayload = new InvoicePayload(
-    clientId: 123,
-    date: now()->toDateString(),
-    items: $items
-);
-
-$response = $daftraClient->createAndPayInvoice($invoicePayload, 100.00, 'credit_card');
+$account = new Account();
+$accounts = $account->list();
 ```
 
 ## ✅ Testing

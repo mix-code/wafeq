@@ -1,10 +1,10 @@
 <?php
 
-namespace MixCode\DaftraClient;
+namespace MixCode\Wafeq;
 
 use Illuminate\Support\ServiceProvider;
 
-class DaftraClientServiceProvider extends ServiceProvider
+class WafeqServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -13,8 +13,8 @@ class DaftraClientServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__ . '/../config/config.php' => config_path('daftra-client.php'),
-            ], 'daftra-client');
+                __DIR__ . '/../config/config.php' => config_path('wafeq.php'),
+            ], 'wafeq');
         }
     }
 
@@ -24,9 +24,10 @@ class DaftraClientServiceProvider extends ServiceProvider
     public function register()
     {
         // Automatically apply the package configuration
-        $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'daftra-client');
+        $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'wafeq');
 
         // Register the main class to use with the facade
-        $this->app->singleton('daftra-client', fn () => new DaftraClient);
+        $this->app->singleton('project', fn () => new Project);
+        $this->app->singleton('contact', fn () => new Contact);
     }
 }

@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) Mohamed Alaa El-Din, Hamza Omar Mohamed
+Copyright (c) Mohamed Alaa El-Din, Hamza Omar Mohamed, Mohamed Ghareeb Ahmed
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

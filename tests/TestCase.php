@@ -1,8 +1,8 @@
 <?php
 
-namespace MixCode\DaftraClient\Tests;
+namespace MixCode\Wafeq\Tests;
 
-use MixCode\DaftraClient\DaftraClientServiceProvider;
+use MixCode\Wafeq\WafeqServiceProvider;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
@@ -13,7 +13,7 @@ abstract class TestCase extends BaseTestCase
     protected function getPackageProviders($app)
     {
         return [
-            DaftraClientServiceProvider::class,
+            WafeqServiceProvider::class,
         ];
     }
 }

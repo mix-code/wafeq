@@ -1,3 +1,3 @@
 <?php
 
-pest()->extend(\MixCode\DaftraClient\Tests\TestCase::class);
+pest()->extend(\MixCode\Wafeq\Tests\TestCase::class);

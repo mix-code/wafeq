@@ -1,13 +1,13 @@
 <?php
 
-namespace MixCode\DaftraClient;
+namespace MixCode\Wafeq;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \MixCode\DaftraClient\Skeleton\SkeletonClass
+ * @see \MixCode\Wafeq\Project
  */
-class DaftraClientFacade extends Facade
+class ProjectFacade extends Facade
 {
     /**
      * Get the registered name of the component.
@@ -16,6 +16,6 @@ class DaftraClientFacade extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'daftra-client';
+        return 'project';
     }
 }

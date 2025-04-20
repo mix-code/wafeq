@@ -1,12 +1,14 @@
 {
-    "name": "mix-code/daftra-client",
-    "description": "Simple implementation for Daftra",
+    "name": "mix-code/wafeq",
+    "description": "Simple implementation for Wafeq API",
     "keywords": [
         "mix-code",
         "mixcode",
-        "daftra-client"
+        "wafeq",
+        "wafeq-client",
+        "wafeq-api"
     ],
-    "homepage": "https://github.com/mix-code/daftra-client",
+    "homepage": "https://github.com/mix-code/wafeq",
     "license": "MIT",
     "type": "library",
     "authors": [
@@ -19,20 +21,25 @@
             "name": "Hamza Omar Mohamed",
             "email": "hamzalilomar92@gmail.com",
             "role": "Developer"
+        },
+        {
+            "name": "Mohamed Ghareeb Ahmed",
+            "email": "mohamed.ghareeb725@gmail.com",
+            "role": "Developer"
         }
     ],
     "require": {
         "php": "^8.2",
-        "illuminate/support": "^10.0|^11.0"
+        "illuminate/support": "^10.0|^11.0|^12.0"
     },
     "autoload": {
         "psr-4": {
-            "MixCode\\DaftraClient\\": "src/"
+            "MixCode\\Wafeq\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "MixCode\\DaftraClient\\Tests\\": "tests/"
+            "MixCode\\Wafeq\\Tests\\": "tests/"
         }
     },
     "config": {
@@ -44,7 +51,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "MixCode\\DaftraClient\\DaftraClientServiceProvider"
+                "MixCode\\Wafeq\\WafeqServiceProvider"
             ]
         }
     },
