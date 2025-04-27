@@ -4,13 +4,14 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/mix-code/wafeq.svg?style=flat-square)](https://packagist.org/packages/mix-code/wafeq)
 ![GitHub Actions](https://github.com/mix-code/wafeq/actions/workflows/main.yml/badge.svg)
 
-A Laravel package for interacting with the Wafeq API, supporting **projects, contacts, accounts**.
+A Laravel package for interacting with the Wafeq API, supporting **projects, contacts, accounts, manual journals**.
 
 ## 🚀 Features
 
 -   Manage **projects** (list, show, create, update, delete)
 -   Manage **contacts** (list, show, create, update, delete)
 -   Manage **accounts** (list)
+-   Manage **manual journal** (create)
 -   **Simple API wrapper** with Laravel's HTTP Client
 -   Supports **facade usage** for convenience
 
@@ -193,6 +194,43 @@ $response = $contact->update($payload);
 ```php
 $contact = new Contact();
 $contact = $contact->delete($contactId);
+```
+
+### 🔹 manual journal Use `ManualJournal.php` class, in namespace `MixCode\Wafeq\ManualJournal`
+
+#### Create Manual Journal
+
+```php
+// 1. Build Line Items
+$lineItem1 = new ManualJournalLineItemPayload(
+    account: 'acc_123',
+    amount: 1000,
+    amountToBcy: 1000,
+    currency: 'AED',
+    description: 'Sales Revenue',
+    branch: 'main',
+);
+
+$lineItem2 = new ManualJournalLineItemPayload(
+    account: 'acc_456',
+    amount: -1000,
+    amountToBcy: -1000,
+    currency: 'AED',
+    description: 'Cash Payment',
+    branch: 'main',
+);
+
+// 2. Build the main payload
+$manualJournalPayload = new ManualJournalPayload(
+    date: '2025-04-25',
+    lineItems: [$lineItem1, $lineItem2],
+    reference: 'REF-001',
+    notes: 'Payment for invoice #001',
+);
+
+// 3. Create the manual journal
+$manualJournalService = new ManualJournal();
+$response = $manualJournalService->create($manualJournalPayload);
 ```
 
 ### 🔹 Accounts Use `Account.php` class, in namespace `MixCode\Wafeq\Account`

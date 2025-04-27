@@ -11,6 +11,7 @@ class ContactPayload implements Arrayable
         public string $name,
         public string $email,
         public string $phone,
+        public array $additional = [],
     ) {}
 
     public function toArray(): array
@@ -19,6 +20,7 @@ class ContactPayload implements Arrayable
             'name'        => $this->name,
             'email'        => $this->email,
             'phone'        => $this->phone,
+            ...$this->additional,
         ];
     }
 }

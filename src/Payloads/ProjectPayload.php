@@ -9,12 +9,14 @@ class ProjectPayload implements Arrayable
 {
     public function __construct(
         public string $name,
+        public array $additional = [],
     ) {}
 
     public function toArray(): array
     {
         return [
             'name'        => $this->name,
+            ...$this->additional,
         ];
     }
 }
