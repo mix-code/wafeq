@@ -2,7 +2,6 @@
 
 namespace MixCode\Wafeq;
 
-use Illuminate\Support\Facades\Http;
 use MixCode\Wafeq\Payloads\ProjectPayload;
 
 class Project extends WafeqBase
@@ -17,13 +16,7 @@ class Project extends WafeqBase
      */
     public function list(): WafeqResponse
     {
-        $res = Http::asJson()
-            ->withHeaders($this->headers())
-            ->get("{$this->endpoint}/{$this->apiPrefix}/projects/");
-
-        return $this->formatResponse($res->json(), [
-            'code' => $res->status(),
-        ]);
+        return $this->send('get', "{$this->endpoint}/{$this->apiPrefix}/projects/");
     }
 
     /**
@@ -34,14 +27,7 @@ class Project extends WafeqBase
      */
     public function create(ProjectPayload $projectPayload): WafeqResponse
     {
-        $res = Http::asJson()
-            ->withHeaders($this->headers())
-            ->post("{$this->endpoint}/{$this->apiPrefix}/projects/", $projectPayload->toArray());
-
-        return $this->formatResponse($res->json(), [
-            'id'   => $res['id'] ?? null,
-            'code' => $res->status(),
-        ]);
+        return $this->send('post', "{$this->endpoint}/{$this->apiPrefix}/projects/", $projectPayload->toArray());
     }
 
     /**
@@ -53,14 +39,7 @@ class Project extends WafeqBase
      */
     public function update(ProjectPayload $projectPayload, $projectId): WafeqResponse
     {
-        $res = Http::asJson()
-            ->withHeaders($this->headers())
-            ->put("{$this->endpoint}/{$this->apiPrefix}/projects/{$projectId}/", $projectPayload->toArray());
-
-        return $this->formatResponse($res->json(), [
-            'id'   => $projectId,
-            'code' => $res->status(),
-        ]);
+        return $this->send('put', "{$this->endpoint}/{$this->apiPrefix}/projects/{$projectId}/", $projectPayload->toArray());
     }
 
     /**
@@ -71,15 +50,7 @@ class Project extends WafeqBase
      */
     public function show($projectId): WafeqResponse
     {
-        $res = Http::asJson()
-            ->withHeaders($this->headers())
-            ->get("{$this->endpoint}/{$this->apiPrefix}/projects/{$projectId}/");
-
-        return $this->formatResponse([], [
-            'data' => $res->json(),
-            'id'   => $projectId,
-            'code' => $res->status(),
-        ]);
+        return $this->send('get', "{$this->endpoint}/{$this->apiPrefix}/projects/{$projectId}/");
     }
 
     /**
@@ -90,13 +61,6 @@ class Project extends WafeqBase
      */
     public function delete($projectId): WafeqResponse
     {
-        $res = Http::asJson()
-            ->withHeaders($this->headers())
-            ->delete("{$this->endpoint}/{$this->apiPrefix}/projects/{$projectId}/");
-
-        return $this->formatResponse([], [
-            'id'   => $projectId,
-            'code' => $res->status(),
-        ]);
+        return $this->send('delete', "{$this->endpoint}/{$this->apiPrefix}/projects/{$projectId}/");
     }
 }

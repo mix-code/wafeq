@@ -2,7 +2,6 @@
 
 namespace MixCode\Wafeq;
 
-use Illuminate\Support\Facades\Http;
 use MixCode\Wafeq\Payloads\ContactPayload;
 
 class Contact extends WafeqBase
@@ -17,13 +16,7 @@ class Contact extends WafeqBase
      */
     public function list(): WafeqResponse
     {
-        $res = Http::asJson()
-            ->withHeaders($this->headers())
-            ->get("{$this->endpoint}/{$this->apiPrefix}/contacts/");
-
-        return $this->formatResponse($res->json(), [
-            'code' => $res->status(),
-        ]);
+        return $this->send('get', "{$this->endpoint}/{$this->apiPrefix}/contacts/");
     }
 
     /**
@@ -31,14 +24,7 @@ class Contact extends WafeqBase
      */
     public function create(ContactPayload $contactPayload): WafeqResponse
     {
-        $res = Http::asJson()
-            ->withHeaders($this->headers())
-            ->post("{$this->endpoint}/{$this->apiPrefix}/contacts/", $contactPayload->toArray());
-
-        return $this->formatResponse($res->json(), [
-            'id'   => $res->json()['id'] ?? null,
-            'code' => $res->status(),
-        ]);
+        return $this->send('post', "{$this->endpoint}/{$this->apiPrefix}/contacts/", $contactPayload->toArray());
     }
 
     /**
@@ -48,14 +34,7 @@ class Contact extends WafeqBase
      */
     public function update(ContactPayload $contactPayload, $contactId): WafeqResponse
     {
-        $res = Http::asJson()
-            ->withHeaders($this->headers())
-            ->put("{$this->endpoint}/{$this->apiPrefix}/contacts/{$contactId}/", $contactPayload->toArray());
-
-        return $this->formatResponse($res->json(), [
-            'id'   => $contactId,
-            'code' => $res->status(),
-        ]);
+        return $this->send('put', "{$this->endpoint}/{$this->apiPrefix}/contacts/{$contactId}/", $contactPayload->toArray());
     }
 
     /**
@@ -65,14 +44,7 @@ class Contact extends WafeqBase
      */
     public function show($contactId): WafeqResponse
     {
-        $res = Http::asJson()
-            ->withHeaders($this->headers())
-            ->get("{$this->endpoint}/{$this->apiPrefix}/contacts/{$contactId}/");
-
-        return $this->formatResponse($res->json(), [
-            'id'   => $contactId,
-            'code' => $res->status(),
-        ]);
+        return $this->send('get', "{$this->endpoint}/{$this->apiPrefix}/contacts/{$contactId}/");
     }
 
     /**
@@ -82,13 +54,6 @@ class Contact extends WafeqBase
      */
     public function delete($contactId): WafeqResponse
     {
-        $res = Http::asJson()
-            ->withHeaders($this->headers())
-            ->delete("{$this->endpoint}/{$this->apiPrefix}/contacts/{$contactId}/");
-
-        return $this->formatResponse([], [
-            'id'   => $contactId,
-            'code' => $res->status(),
-        ]);
+        return $this->send('delete', "{$this->endpoint}/{$this->apiPrefix}/contacts/{$contactId}/");
     }
 }

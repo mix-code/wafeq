@@ -3,7 +3,6 @@
 namespace MixCode\Wafeq;
 
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Http;
 
 class Account extends WafeqBase
 {
@@ -17,14 +16,9 @@ class Account extends WafeqBase
      */
     public function list(): WafeqResponse
     {
-        $res = Http::asJson()
-            ->withHeaders($this->headers())
-            ->get("{$this->endpoint}/{$this->apiPrefix}/accounts/", [
-                'include_system' => true,
-            ])
-            ->json();
-
-        return $this->formatResponse($res);
+        return $this->send('get', "{$this->endpoint}/{$this->apiPrefix}/accounts/", [
+            'include_system' => true,
+        ]);
     }
 
     /**

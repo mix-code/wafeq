@@ -2,7 +2,6 @@
 
 namespace MixCode\Wafeq;
 
-use Illuminate\Support\Facades\Http;
 use MixCode\Wafeq\Payloads\ManualJournalPayload;
 
 class ManualJournal extends WafeqBase
@@ -17,13 +16,6 @@ class ManualJournal extends WafeqBase
      */
     public function create(ManualJournalPayload $manualJournalPayload): WafeqResponse
     {
-        $res = Http::asJson()
-            ->withHeaders($this->headers())
-            ->post("{$this->endpoint}/{$this->apiPrefix}/manual-journals/", $manualJournalPayload->toArray());
-
-        return $this->formatResponse($res->json(), [
-            'id'   => $res->json()['id'] ?? null,
-            'code' => $res->status(),
-        ]);
+        return $this->send('post', "{$this->endpoint}/{$this->apiPrefix}/manual-journals/", $manualJournalPayload->toArray());
     }
 }
