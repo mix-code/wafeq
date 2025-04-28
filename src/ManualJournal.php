@@ -3,7 +3,6 @@
 namespace MixCode\Wafeq;
 
 use Illuminate\Support\Facades\Http;
-use MixCode\Wafeq\WafeqBase;
 use MixCode\Wafeq\Payloads\ManualJournalPayload;
 
 class ManualJournal extends WafeqBase
@@ -15,9 +14,6 @@ class ManualJournal extends WafeqBase
 
     /**
      * Create a new manual journal.
-     *
-     * @param ManualJournalPayload $manualJournalPayload
-     * @return WafeqResponse
      */
     public function create(ManualJournalPayload $manualJournalPayload): WafeqResponse
     {

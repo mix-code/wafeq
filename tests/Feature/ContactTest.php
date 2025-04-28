@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Http;
-use MixCode\Wafeq\Payloads\ContactPayload;
 use MixCode\Wafeq\Contact;
+use MixCode\Wafeq\Payloads\ContactPayload;
 use MixCode\Wafeq\WafeqResponse;
 
 beforeEach(function () {
@@ -31,7 +31,7 @@ it('lists contacts successfully', function () {
 it('shows a single contact', function () {
     Http::fake([
         '*/contacts/1' => Http::response([
-            'id' => 1,
+            'id'   => 1,
             'name' => 'Alice',
         ], 200),
     ]);
@@ -74,7 +74,7 @@ it('updates an existing contact', function () {
 
     Http::fake([
         '*/contacts/1' => Http::response([
-            'id' => 1,
+            'id'   => 1,
             'name' => 'Updated Contact',
         ], 200),
     ]);

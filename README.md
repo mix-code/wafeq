@@ -34,7 +34,13 @@ Publish the configuration file:
 php artisan vendor:publish --tag=wafeq
 ```
 
-Then update your `.env` file:
+To enable the package, add the following to your `.env` file:
+
+```env
+WAFEQ_IS_ENABLED=true
+```
+
+And update your `.env` file:
 
 ```env
 WAFEQ_API_KEY=your_api_key_here

@@ -2,7 +2,6 @@
 
 namespace MixCode\Wafeq;
 
-use MixCode\Wafeq\WafeqBase;
 use Illuminate\Support\Facades\Http;
 use MixCode\Wafeq\Payloads\ContactPayload;
 
@@ -15,8 +14,6 @@ class Contact extends WafeqBase
 
     /**
      * List all contacts.
-     *
-     * @return WafeqResponse
      */
     public function list(): WafeqResponse
     {
@@ -31,9 +28,6 @@ class Contact extends WafeqBase
 
     /**
      * Create a new contact.
-     *
-     * @param ContactPayload $contactPayload
-     * @return WafeqResponse
      */
     public function create(ContactPayload $contactPayload): WafeqResponse
     {
@@ -50,9 +44,7 @@ class Contact extends WafeqBase
     /**
      * Update an existing contact.
      *
-     * @param ContactPayload $contactPayload
-     * @param string|int $contactId
-     * @return WafeqResponse
+     * @param  string|int  $contactId
      */
     public function update(ContactPayload $contactPayload, $contactId): WafeqResponse
     {
@@ -69,8 +61,7 @@ class Contact extends WafeqBase
     /**
      * Show a single contact.
      *
-     * @param string|int $contactId
-     * @return WafeqResponse
+     * @param  string|int  $contactId
      */
     public function show($contactId): WafeqResponse
     {
@@ -87,8 +78,7 @@ class Contact extends WafeqBase
     /**
      * Delete a contact.
      *
-     * @param string|int $contactId
-     * @return WafeqResponse
+     * @param  string|int  $contactId
      */
     public function delete($contactId): WafeqResponse
     {

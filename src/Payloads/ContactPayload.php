@@ -17,9 +17,9 @@ class ContactPayload implements Arrayable
     public function toArray(): array
     {
         return [
-            'name'        => $this->name,
-            'email'        => $this->email,
-            'phone'        => $this->phone,
+            'name'  => $this->name,
+            'email' => $this->email,
+            'phone' => $this->phone,
             ...$this->additional,
         ];
     }

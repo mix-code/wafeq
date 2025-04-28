@@ -8,7 +8,7 @@ it('converts project payload to array correctly', function () {
     );
 
     $expectedArray = [
-        'name'       => 'John',
+        'name' => 'John',
     ];
 
     expect($payload->toArray())->toBe($expectedArray);

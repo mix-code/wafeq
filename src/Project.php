@@ -2,7 +2,6 @@
 
 namespace MixCode\Wafeq;
 
-use MixCode\Wafeq\WafeqBase;
 use Illuminate\Support\Facades\Http;
 use MixCode\Wafeq\Payloads\ProjectPayload;
 
@@ -15,8 +14,6 @@ class Project extends WafeqBase
 
     /**
      * List all projects.
-     *
-     * @return WafeqResponse
      */
     public function list(): WafeqResponse
     {
@@ -32,19 +29,17 @@ class Project extends WafeqBase
     /**
      * Create a new project.
      *
-     * @param ProjectPayload $projectPayload The payload containing project details.
+     * @param  ProjectPayload  $projectPayload  The payload containing project details.
      * @return WafeqResponse The response containing the created project's ID and status code.
      */
-
     public function create(ProjectPayload $projectPayload): WafeqResponse
     {
         $res = Http::asJson()
             ->withHeaders($this->headers())
             ->post("{$this->endpoint}/{$this->apiPrefix}/projects/", $projectPayload->toArray());
-            ;
 
         return $this->formatResponse($res->json(), [
-            'id' => $res['id'] ?? null,
+            'id'   => $res['id'] ?? null,
             'code' => $res->status(),
         ]);
     }
@@ -52,8 +47,8 @@ class Project extends WafeqBase
     /**
      * Update a project.
      *
-     * @param ProjectPayload $projectPayload The payload containing project details.
-     * @param int $projectId The ID of the project to be updated.
+     * @param  ProjectPayload  $projectPayload  The payload containing project details.
+     * @param  int  $projectId  The ID of the project to be updated.
      * @return WafeqResponse The response containing the updated project's ID and status code.
      */
     public function update(ProjectPayload $projectPayload, $projectId): WafeqResponse
@@ -71,7 +66,7 @@ class Project extends WafeqBase
     /**
      * Retrieve a project by its ID.
      *
-     * @param int $projectId The ID of the project to be retrieved.
+     * @param  int  $projectId  The ID of the project to be retrieved.
      * @return WafeqResponse The response containing the project's data and status code.
      */
     public function show($projectId): WafeqResponse
@@ -81,7 +76,7 @@ class Project extends WafeqBase
             ->get("{$this->endpoint}/{$this->apiPrefix}/projects/{$projectId}/");
 
         return $this->formatResponse([], [
-            'data'   => $res->json(),
+            'data' => $res->json(),
             'id'   => $projectId,
             'code' => $res->status(),
         ]);
@@ -90,7 +85,7 @@ class Project extends WafeqBase
     /**
      * Delete a project.
      *
-     * @param int $projectId The ID of the project to be deleted.
+     * @param  int  $projectId  The ID of the project to be deleted.
      * @return WafeqResponse The response containing the deleted project's ID and status code.
      */
     public function delete($projectId): WafeqResponse

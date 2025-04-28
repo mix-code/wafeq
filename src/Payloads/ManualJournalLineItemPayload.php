@@ -26,19 +26,19 @@ class ManualJournalLineItemPayload implements Arrayable
     public function toArray(): array
     {
         return array_filter([
-            'account'        => $this->account,
-            'amount'         => $this->amount,
-            'amount_to_bcy'  => $this->amountToBcy,
-            'currency'       => $this->currency,
-            'description'    => $this->description,
-            'branch'         => $this->branch,
-            'contact'        => $this->contact,
-            'cost_center'    => $this->costCenter,
-            'exchange_rate'  => $this->exchangeRate,
-            'place_of_supply'=> $this->placeOfSupply,
-            'project'        => $this->project,
-            'tax_amount'     => $this->taxAmount,
-            'tax_rate'       => $this->taxRate,
+            'account'         => $this->account,
+            'amount'          => $this->amount,
+            'amount_to_bcy'   => $this->amountToBcy,
+            'currency'        => $this->currency,
+            'description'     => $this->description,
+            'branch'          => $this->branch,
+            'contact'         => $this->contact,
+            'cost_center'     => $this->costCenter,
+            'exchange_rate'   => $this->exchangeRate,
+            'place_of_supply' => $this->placeOfSupply,
+            'project'         => $this->project,
+            'tax_amount'      => $this->taxAmount,
+            'tax_rate'        => $this->taxRate,
         ], fn ($value) => !is_null($value)); // Remove nulls
     }
 }

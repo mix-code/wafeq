@@ -10,9 +10,9 @@ it('converts contact payload to array correctly', function () {
     );
 
     $expectedArray = [
-        'name'   => 'John Doe',
-        'email'  => 'johndoe@example.com',
-        'phone'  => '+1234567890',
+        'name'  => 'John Doe',
+        'email' => 'johndoe@example.com',
+        'phone' => '+1234567890',
     ];
 
     expect($payload->toArray())->toBe($expectedArray);

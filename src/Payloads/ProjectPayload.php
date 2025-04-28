@@ -15,7 +15,7 @@ class ProjectPayload implements Arrayable
     public function toArray(): array
     {
         return [
-            'name'        => $this->name,
+            'name' => $this->name,
             ...$this->additional,
         ];
     }

@@ -15,11 +15,11 @@ it('lists projects successfully', function () {
     Http::fake([
         '*/projects*' => Http::response([
             [
-                'id' => 1,
+                'id'   => 1,
                 'name' => 'Project Alpha',
             ],
             [
-                'id' => 2,
+                'id'   => 2,
                 'name' => 'Project Beta',
             ],
         ], 200),
@@ -37,7 +37,7 @@ it('lists projects successfully', function () {
 it('shows a single project', function () {
     Http::fake([
         '*/projects/1' => Http::response([
-            'id' => 1,
+            'id'   => 1,
             'name' => 'Project Alpha',
         ], 200),
     ]);
@@ -75,7 +75,7 @@ it('updates an existing project', function () {
 
     Http::fake([
         '*/projects/1' => Http::response([
-            'id' => 1,
+            'id'   => 1,
             'name' => 'Project Updated',
         ], 200),
     ]);
