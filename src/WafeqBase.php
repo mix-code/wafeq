@@ -45,7 +45,9 @@ class WafeqBase
             ->withHeaders($this->headers())
             ->{$method}($url, $payload);
 
-        return $this->formatResponse($res->json(), array_merge([
+        $json = ($temp = $res->json()) && is_array($temp) ? $temp : [];
+
+        return $this->formatResponse($json, array_merge([
             'code' => $res->status(),
             'id'   => $res->json()['id'] ?? null,
         ], $additionalData));
