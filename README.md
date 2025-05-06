@@ -4,7 +4,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/mix-code/wafeq.svg?style=flat-square)](https://packagist.org/packages/mix-code/wafeq)
 ![GitHub Actions](https://github.com/mix-code/wafeq/actions/workflows/main.yml/badge.svg)
 
-A Laravel package for interacting with the Wafeq API, supporting **projects, contacts, accounts, manual journals**.
+A Laravel package for interacting with the Wafeq API, supporting **projects, contacts, accounts, manual journals, invoices**.
 
 ## 🚀 Features
 
@@ -12,6 +12,7 @@ A Laravel package for interacting with the Wafeq API, supporting **projects, con
 -   Manage **contacts** (list, show, create, update, delete)
 -   Manage **accounts** (list)
 -   Manage **manual journal** (create)
+-   Manage **invoice** (create)
 -   **Simple API wrapper** with Laravel's HTTP Client
 -   Supports **facade usage** for convenience
 
